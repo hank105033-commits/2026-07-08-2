@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2S 鋰電池電壓與電量知識指南</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Microsoft JhengHei", sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 20px auto;
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        h1 {
+            color: #0f766e;
+            border-bottom: 3px solid #0f766e;
+            padding-bottom: 12px;
+            margin-top: 0;
+            font-size: 24px;
+        }
+        h2 {
+            color: #1e293b;
+            margin-top: 30px;
+            border-left: 5px solid #0f766e;
+            padding-left: 12px;
+            font-size: 18px;
+        }
+        p {
+            margin: 10px 0;
+        }
+        .alert-box {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .alert-warning {
+            background-color: #fffbeb;
+            border-left: 4px solid #d97706;
+            color: #92400e;
+        }
+        .alert-danger {
+            background-color: #fef2f2;
+            border-left: 4px solid #dc2626;
+            color: #991b1b;
+        }
+        .alert-info {
+            background-color: #f0fdfa;
+            border-left: 4px solid #0f766e;
+            color: #115e59;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 15px;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        th {
+            background-color: #0f766e;
+            color: white;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+        .highlight-storage {
+            background-color: #f0fdf4 !important;
+            font-weight: bold;
+        }
+        .highlight-cutoff {
+            background-color: #fff1f2 !important;
+            color: #e11d48;
+            font-weight: bold;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .badge-danger { background-color: #fee2e2; color: #ef4444; }
+        .badge-success { background-color: #dcfce7; color: #22c55e; }
+        .badge-primary { background-color: #ccfbf1; color: #0d9488; }
+        
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .container { padding: 20px; }
+            table { font-size: 13px; }
+            th, td { padding: 8px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>2S 鋰電池電壓與電量觀念指南</h1>
+    
+    <p>當量測到 2S 鋰電池（LiPo / Li-ion）電壓為 <strong>3.7V</strong> 時，其代表的意義取決於該電壓是「單芯電壓」還是「整組總電壓」：</p>
+
+    <div class="alert-box alert-warning">
+        <strong>情況一：若 3.7V 是「單芯電壓 (Per Cell)」</strong><br>
+        此時整組 2S 電池的總電壓為 7.4V。這代表電量大約只剩下 <strong>10% ~ 15%</strong>。電池已處於低電量狀態，應立即停止使用並安排充電，避免過度放電。
+    </div>
+
+    <div class="alert-box alert-danger">
+        <strong>情況二：若 3.7V 是「整組總電壓 (Total Voltage)」</strong><br>
+        此時平均單芯電壓僅有 1.85V（3.7V / 2）。這代表電量為 <strong>0% 且已嚴重過放損壞</strong>。低於 3.0V 的鋰電池極易產生不可逆的化學損傷，充電時有膨脹、起火等高風險，<strong>強烈建議直接報廢回收，切勿再次充電！</strong>
+    </div>
+
+    <h2>2S 鋰電池（標準 4.2V 滿電）電壓電量對照表</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>單芯電壓 (Per Cell)</th>
+                <th>2S 總電壓 (Total)</th>
+                <th>預估剩餘電量 (%)</th>
+                <th>狀態與建議</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>4.20V</strong></td>
+                <td><strong>8.40V</strong></td>
+                <td><span class="badge badge-success">100%</span></td>
+                <td>飽電狀態，可正常使用</td>
+            </tr>
+            <tr>
+                <td>4.10V</td>
+                <td>8.20V</td>
+                <td>~90%</td>
+                <td>電量充足</td>
+            </tr>
+            <tr>
+                <td>4.00V</td>
+                <td>8.00V</td>
+                <td>~80%</td>
+                <td>電量充足</td>
+            </tr>
+            <tr>
+                <td>3.90V</td>
+                <td>7.80V</td>
+                <td>~60%</td>
+                <td>中等電量</td>
+            </tr>
+            <tr class="highlight-storage">
+                <td>3.85V</td>
+                <td>7.70V</td>
+                <td><span class="badge badge-primary">50%</span></td>
+                <td><strong>最佳儲存電壓</strong>（長期不用請充/放至此電壓）</td>
+            </tr>
+            <tr>
+                <td>3.80V</td>
+                <td>7.60V</td>
+                <td>~35%</td>
+                <td>低電量</td>
+            </tr>
+            <tr>
+                <td>3.75V</td>
+                <td>7.50V</td>
+                <td>~20%</td>
+                <td>電量偏低，建議準備充電</td>
+            </tr>
+            <tr>
+                <td><strong>3.70V</strong></td>
+                <td><strong>7.40V</strong></td>
+                <td>~10% - 15%</td>
+                <td>額定電壓，應儘速停止使用</td>
+            </tr>
+            <tr>
+                <td>3.60V</td>
+                <td>7.20V</td>
+                <td>~5%</td>
+                <td>極低電量，應立即停止使用</td>
+            </tr>
+            <tr class="highlight-cutoff">
+                <td><strong>3.50V</strong></td>
+                <td><strong>7.00V</strong></td>
+                <td><span class="badge badge-danger">0%</span></td>
+                <td><strong>放電截止臨界點</strong>（再低即會傷及電池壽命）</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>鋰電池安全使用與保養要點</h2>
+    <ul>
+        <li><strong>低電壓警報設定：</strong> 使用於遙控模型或電子設備時，建議將低電壓報警器（BB響）設定在單芯 <strong>3.5V ~ 3.6V</strong>，留存安全緩衝空間。</li>
+        <li><strong>長期存放原則：</strong> 鋰電池不宜在全滿（4.2V）或沒電（3.5V）的狀態下長期存放。若預計超過一週不使用，請使用平衡充電器將電壓調整至 <strong>3.85V (儲存電壓)</strong>。</li>
+        <li><strong>充電安全：</strong> 充電時請務必使用專用的「平衡充電器」，並開啟平衡充電（Balance Charge）模式，確保每顆電芯電壓一致。充電時人員切勿離開現場。</li>
+    </ul>
+</div>
+
+</body>
+</html>
